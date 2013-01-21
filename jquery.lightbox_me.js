@@ -242,5 +242,3 @@
         overlayCSS: {background: 'black', opacity: .3}
     }
 })(jQuery);
-
-$('.acv_comment').find('img').click(function(){$(this).lightbox_me();});
