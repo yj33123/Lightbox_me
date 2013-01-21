@@ -1,32 +1,21 @@
-/*
-* $ lightbox_me
-* By: Buck Wilson
-* Version : 2.3
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
-
-
 (function($) {
 
     $.fn.lightbox_me = function(options) {
 
         return this.each(function() {
-
+			var url = $(this).attr('src'),
+				urlArray,
+				size;
+			urlArray = url.split('/');
+			size = urlArray[3];
+			if (urlArray[2].indexOf('sinaimg') > 0) {
+				size = 'large';
+				url = 'http://' + urlArray[2] + '/' + size + '/' + urlArray[4];
+			}
             var
                 opts = $.extend({}, $.fn.lightbox_me.defaults, options),
                 $overlay = $(),
-                $self = $(this),	
+                $self = $('<img src="' + url + '">'),	
                 $iframe = $('<iframe id="foo" style="z-index: ' + (opts.zIndex + 1) + ';border: none; margin: 0; padding: 0; position: absolute; width: 100%; height: 100%; top: 0; left: 0; filter: mask();"/>'),
                 ie6 = ($.browser.msie && $.browser.version < 7);
 
@@ -48,8 +37,8 @@
                 $iframe.attr('src', src);
                 $('body').append($iframe);
             } // iframe shim for ie6, to hide select elements
-            var tempOjb = $.extend({}, $self);
-            $('body').append(tempOjb).append($overlay);
+			var newDOM = $('<img src="' + $self.attr('src') + '">');
+            $('body').append($self.hide()).append($overlay);
 
 
             /*----------------------------------------------------
@@ -237,7 +226,7 @@
         closeEsc: true,
 
         // behavior
-        destroyOnClose: false,
+        destroyOnClose: true,
         showOverlay: true,
         parentLightbox: false,
 
@@ -253,3 +242,5 @@
         overlayCSS: {background: 'black', opacity: .3}
     }
 })(jQuery);
+
+$('.acv_comment').find('img').click(function(){$(this).lightbox_me();});
