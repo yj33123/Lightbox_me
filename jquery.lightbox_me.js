@@ -48,7 +48,8 @@
                 $iframe.attr('src', src);
                 $('body').append($iframe);
             } // iframe shim for ie6, to hide select elements
-            $('body').append(jQuery.extend(true, {}, $self)).append($overlay);
+            var tempOjb = $.extend({}, $self);
+            $('body').append(tempOjb).append($overlay);
 
 
             /*----------------------------------------------------
