@@ -4,9 +4,7 @@
 
         return this.each(function() {
 			var url = $(this).attr('src'),
-				urlArray,
-				size;
-			urlArray = url.split('/');
+			urlArray = url.split('/'),
 			size = urlArray[3];
 			if (urlArray[2].indexOf('sinaimg') > 0) {
 				size = 'large';
