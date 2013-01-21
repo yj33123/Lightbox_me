@@ -26,7 +26,7 @@
             var
                 opts = $.extend({}, $.fn.lightbox_me.defaults, options),
                 $overlay = $(),
-                $self = $(this),
+                $self = $(this),	
                 $iframe = $('<iframe id="foo" style="z-index: ' + (opts.zIndex + 1) + ';border: none; margin: 0; padding: 0; position: absolute; width: 100%; height: 100%; top: 0; left: 0; filter: mask();"/>'),
                 ie6 = ($.browser.msie && $.browser.version < 7);
 
@@ -48,7 +48,7 @@
                 $iframe.attr('src', src);
                 $('body').append($iframe);
             } // iframe shim for ie6, to hide select elements
-            $('body').append($self.hide()).append($overlay);
+            $('body').append($self).append($overlay);
 
 
             /*----------------------------------------------------
