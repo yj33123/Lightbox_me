@@ -52,7 +52,7 @@
             }
 
             /*----------------------------------------------------
-               Animate it in.
+               css it in.
             ---------------------------------------------------- */
                //
             if (opts.showOverlay) {
@@ -163,7 +163,7 @@
                 var s = $self[0].style;
 
                 // reset CSS so width is re-calculated for margin-left CSS
-                $self.animate({left: '50%', marginLeft: ($self.outerWidth() / 2) * -1,  zIndex: (opts.zIndex + 3) });
+                $self.css({left: '50%', marginLeft: ($self.outerWidth() / 2) * -1,  zIndex: (opts.zIndex + 3) });
 
 
                 /* we have to get a little fancy when dealing with height, because lightbox_me
@@ -171,12 +171,12 @@
                  */
 
                 // if the height of $self is bigger than the window and self isn't already position absolute
-                if (($self.height() + 80  >= $(window).height()) && ($self.animate('position') != 'absolute' || ie6)) {
+                if (($self.height() + 80  >= $(window).height()) && ($self.css('position') != 'absolute' || ie6)) {
 
                     // we are going to make it positioned where the user can see it, but they can still scroll
                     // so the top offset is based on the user's scroll position.
                     var topOffset = $(document).scrollTop() + 40;
-                    $self.animate({position: 'absolute', top: topOffset + 'px', marginTop: 0})
+                    $self.css({position: 'absolute', top: topOffset + 'px', marginTop: 0})
                     if (ie6) {
                         s.removeExpression('top');
                     }
@@ -194,9 +194,9 @@
                         }
                     } else {
                         if (opts.centered) {
-                            $self.animate({ position: 'fixed', top: '50%', marginTop: ($self.outerHeight() / 2) * -1})
+                            $self.css({ position: 'fixed', top: '50%', marginTop: ($self.outerHeight() / 2) * -1})
                         } else {
-                            $self.animate({ position: 'fixed'}).css(opts.modalCSS);
+                            $self.css({ position: 'fixed'}).css(opts.modalCSS);
                         }
 
                     }
